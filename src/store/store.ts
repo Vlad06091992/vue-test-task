@@ -14,6 +14,7 @@ interface State {
         currentPosition: number;
     };
     movableElement: string;
+    activeElement: string;
     elemPositions: number[];
 }
 
@@ -37,6 +38,7 @@ export const useStore = defineStore("movieStore", {
             Green: green,
             Yellow: yellow,
             movableElement: '',
+            activeElement:'',
             elemPositions: [green.currentPosition, blue.currentPosition, yellow.currentPosition],
         };
     },
@@ -50,6 +52,10 @@ export const useStore = defineStore("movieStore", {
         },
         setMovableElement(element: string) {
             this.movableElement = element;
+        },
+        setActiveElement(elem: "Blue" | "Yellow" | "Green") {
+            this.activeElement = elem;
+            console.log(this.activeElement)
         }
     }
 });

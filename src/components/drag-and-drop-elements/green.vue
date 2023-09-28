@@ -2,7 +2,7 @@
   <div class="green"></div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
 </script>
 
@@ -13,10 +13,5 @@
   width: 50px;
   height: 50px;
   background-color: #7FAA65;
-}
-
-.green:hover{
-  //margin: 15px;
-  //background: gray;
 }
 </style>

@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import Main from './components/main.vue'
+
+
+import MainTable from "../src/components/main-table.vue";
+import Settings from "../src/components/settings.vue";
 
 </script>
 
 <template>
-<Main/>
+  <div style="display: flex">
+    <MainTable/>
+    <Settings/>
+  </div>
+
 </template>
 
 <style scoped>

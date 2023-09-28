@@ -1,21 +1,25 @@
-<script setup>
+<script setup lang="ts">
 
-import {computed, ref, watch} from "vue";
-import Green from "../components/drag-and-drop-elements/green.vue";
 import {useStore} from "../store/store.ts";
+
+
+import Green from "./drag-and-drop-elements/green.vue";
 import Yellow from "./drag-and-drop-elements/yellow.vue";
 import Blue from "./drag-and-drop-elements/blue.vue";
 
 
 const store = useStore();
 
-function onDragStart(name, num) {
+function onDragStart(name:string) {
   store.setMovableElement(name)
 }
+function onDrop(e:any, value:number) {
+  store.replaceElement(e, value)
+}
 
-
-function onDrop(e, value) {
-  store.replaceElement(e,value)
+function setCurrentComponent(element:"Blue" | "Green" | "Yellow"){
+  debugger
+  store.setActiveElement(element)
 }
 
 
@@ -31,14 +35,14 @@ function onDrop(e, value) {
             @drop="onDrop(store.movableElement,(row - 1) * 5 + column)" class="td" v-for="column in 5"
             :key="(row - 1) * 5 + column"
         >
-          <Blue v-if="store['Blue'].currentPosition === (row - 1) * 5 + column" draggable="true"
+          <Blue @dblclick="setCurrentComponent('Blue')" v-if="store['Blue'].currentPosition === (row - 1) * 5 + column" draggable="true"
                 @drag="onDragStart('Blue')"
           />
-          <Yellow v-if="store['Yellow'].currentPosition === (row - 1) * 5 + column" draggable="true"
-                @drag="onDragStart('Yellow')"
+          <Yellow @dblclick="setCurrentComponent('Yellow')" v-if="store['Yellow'].currentPosition === (row - 1) * 5 + column" draggable="true"
+                  @drag="onDragStart('Yellow')"
           />
-          <Green v-if="store['Green'].currentPosition === (row - 1) * 5 + column" draggable="true"
-                @drag="onDragStart('Green')"
+          <Green @dblclick="setCurrentComponent('Green')" v-if="store['Green'].currentPosition === (row - 1) * 5 + column" draggable="true"
+                 @drag="onDragStart('Green')"
           />
         </td>
       </tr>
@@ -62,7 +66,7 @@ table {
 }
 
 .td {
-  background: gray;
+  background: #26262680;
   width: 100px;
   height: 100px;
   border: 1px solid black;

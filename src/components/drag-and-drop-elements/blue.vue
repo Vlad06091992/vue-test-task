@@ -2,9 +2,8 @@
   <div class="green"></div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
-const id = 1
 
 console.log(1)
 </script>
