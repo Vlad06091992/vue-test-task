@@ -1,29 +1,55 @@
 import {defineStore} from "pinia";
 
+interface State {
+    Blue: {
+        name: string;
+        currentPosition: number;
+    };
+    Green: {
+        name: string;
+        currentPosition: number;
+    };
+    Yellow: {
+        name: string;
+        currentPosition: number;
+    };
+    movableElement: string;
+    elemPositions: number[];
+}
 
 export const useStore = defineStore("movieStore", {
-    state: () => ({
-        elements: [
-            {
-                name: 'Green',
-                currentPosition: 10
-            },
-        ],
-        // activeTab: 1
-    }),
+    state: (): State => {
+        const blue = {
+            name: 'Blue',
+            currentPosition: 1
+        };
+        const green = {
+            name: 'Green',
+            currentPosition: 2
+        };
+        const yellow = {
+            name: 'Yellow',
+            currentPosition: 3
+        };
+
+        return {
+            Blue: blue,
+            Green: green,
+            Yellow: yellow,
+            movableElement: '',
+            elemPositions: [green.currentPosition, blue.currentPosition, yellow.currentPosition],
+        };
+    },
     getters: {},
-
-
     actions: {
-        replaceElement( pos: any) {
-            debugger
-            // state.elements[0].currentPosition = pos
-            // state.elements[0].currentPosition = pos
-
-            this.elements[0].currentPosition = pos
-
+        replaceElement(elem: "Blue" | "Yellow" | "Green", pos: number) {
+            if (pos == this.Green.currentPosition) return
+            if (pos == this.Yellow.currentPosition) return
+            if (pos == this.Blue.currentPosition) return
+            this[elem].currentPosition = pos;
         },
+        setMovableElement(element: string) {
+            this.movableElement = element;
+        }
     }
-
-})
-
+});

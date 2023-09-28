@@ -1,22 +1,24 @@
 <script setup>
 
-import {ref} from "vue";
+import {computed, ref, watch} from "vue";
 import Green from "../components/drag-and-drop-elements/green.vue";
 import {useStore} from "../store/store.ts";
+import Yellow from "./drag-and-drop-elements/yellow.vue";
+import Blue from "./drag-and-drop-elements/blue.vue";
 
 
 const store = useStore();
-// let test = ref(store.elements[0].currentPosition)
 
-function onDragStart() {
-
+function onDragStart(name, num) {
+  store.setMovableElement(name)
 }
 
 
 function onDrop(e, value) {
-  // test.value = store.elements[0].currentPosition
-  store.replaceElement(value)
+  store.replaceElement(e,value)
 }
+
+
 </script>
 
 <template>
@@ -26,10 +28,17 @@ function onDrop(e, value) {
       <tr v-for="row in 5" :key="row">
         <td @dragover.prevent
             @dragenter.prevent
-            @drop="onDrop($event,(row - 1) * 5 + column)" class="td" v-for="column in 5"
-            :key="(row - 1) * 5 + column">
-          <Green v-if="store.elements[0].currentPosition === (row - 1) * 5 + column" draggable="true"
-                 @drag="onDragStart($event,(row - 1) * 5 + column)"
+            @drop="onDrop(store.movableElement,(row - 1) * 5 + column)" class="td" v-for="column in 5"
+            :key="(row - 1) * 5 + column"
+        >
+          <Blue v-if="store['Blue'].currentPosition === (row - 1) * 5 + column" draggable="true"
+                @drag="onDragStart('Blue')"
+          />
+          <Yellow v-if="store['Yellow'].currentPosition === (row - 1) * 5 + column" draggable="true"
+                @drag="onDragStart('Yellow')"
+          />
+          <Green v-if="store['Green'].currentPosition === (row - 1) * 5 + column" draggable="true"
+                @drag="onDragStart('Green')"
           />
         </td>
       </tr>
@@ -37,6 +46,7 @@ function onDrop(e, value) {
     </table>
   </div>
 </template>
+
 
 <style scoped lang="css">
 
