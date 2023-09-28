@@ -4,9 +4,6 @@
 
 <script setup>
 
-const id = 1
-
-console.log(1)
 </script>
 
 <style scoped>
