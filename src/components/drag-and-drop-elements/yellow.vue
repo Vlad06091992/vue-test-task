@@ -21,15 +21,12 @@ type Props = {
 }
 
 const { showInstruments,bigSize } = defineProps<Props>();
-
 const numberOfTools = computed(()=>{
   return useStore()['Yellow'].numberOfTools
 })
-
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
 .root {
   width: 96px;
   height: 96px;
@@ -73,7 +70,6 @@ const numberOfTools = computed(()=>{
   left: 30px;
 }
 
-
 .numberOfTools{
   font-size: 12px;
   position: absolute;
@@ -90,5 +86,4 @@ const numberOfTools = computed(()=>{
   margin-top: 3px;
   margin-left: 5px;
 }
-
 </style>

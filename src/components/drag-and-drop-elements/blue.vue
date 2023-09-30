@@ -19,16 +19,13 @@ type Props = {
   showInstruments: boolean,
   bigSize:boolean
 }
-
 const { showInstruments,bigSize } = defineProps<Props>();
-
 const numberOfTools = computed(()=>{
   return useStore()['Blue'].numberOfTools
 })
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
 .root {
   width: 96px;
   height: 96px;

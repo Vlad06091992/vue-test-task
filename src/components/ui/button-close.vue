@@ -10,8 +10,7 @@ const emit = defineEmits(["close"]);
   </div>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
 
 .cancel-button {
   width: 12px;
@@ -30,25 +29,26 @@ const emit = defineEmits(["close"]);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
 
-.cancel-icon::before,
-.cancel-icon::after {
-  content: "";
-  width: 100%;
-  height: 2px;
-  background-color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+  &::before,
+  &::after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-.cancel-icon::before {
-  transform: translate(-50%, -50%) rotate(45deg);
-}
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
 
-.cancel-icon::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
 }
 </style>

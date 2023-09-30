@@ -1,16 +1,12 @@
 <script setup lang="ts">
 
 import {useStore} from "../store/store.ts";
-
-
 import Green from "./drag-and-drop-elements/green.vue";
 import Yellow from "./drag-and-drop-elements/yellow.vue";
 import Blue from "./drag-and-drop-elements/blue.vue";
 import Settings from "./settings.vue";
 
-
 const store = useStore();
-
 function onDragStart(name:string) {
   store.setMovableElement(name)
 }
@@ -23,8 +19,6 @@ function onDrop(e:any, value:number) {
 function setCurrentComponent(element:"Blue" | "Green" | "Yellow"){
   store.setActiveElement(element)
 }
-
-
 </script>
 
 <template>
