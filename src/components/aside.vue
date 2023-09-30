@@ -5,9 +5,9 @@ import piniaIcon from "../../src/images/vue-test-task.png";
 
 
 <template>
-  <div class="root_aside">
-    <div class="image" >
-      <img  :src="piniaIcon">
+  <div class="root_settings">
+    <div class="image">
+      <img :src="piniaIcon">
     </div>
     <div class="line"></div>
     <div class="skeleton1"></div>
@@ -31,23 +31,23 @@ import piniaIcon from "../../src/images/vue-test-task.png";
   background: linear-gradient(90deg, #3C3C3C 0%, #444444 51.04%, #333333 100%)
 }
 
-.root_aside {
-  position: relative;
- border-radius: 10px;
+.root_settings {
+  border-radius: 10px;
   border: 2px solid #4c4c4c;
   width: 236px;
   height: 501px;
   background: #2D2D2D;
 }
-img{
+
+img {
   border-radius: 10px;
   max-width: 100%;
   height: auto;
 }
 
-.image{
+.image {
   position: relative;
-  top:15px;
+  top: 15px;
   margin: 0 auto;
   position: relative;
   width: 208px;
@@ -95,8 +95,6 @@ img{
   border-radius: 4px;
   @include skeletons(150px, 70px, 10px)
 }
-
-
 
 
 </style>

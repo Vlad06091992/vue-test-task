@@ -11,11 +11,7 @@ const emit = defineEmits(["close"]);
 </template>
 
 <style scoped>
-.button_root {
-  position: absolute;
-  top:6px;
-  left:222px;
-}
+
 
 .cancel-button {
   width: 12px;

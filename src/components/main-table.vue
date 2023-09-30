@@ -72,8 +72,7 @@ function setCurrentComponent(element:"Blue" | "Green" | "Yellow"){
 }
 
 table {
-  border-collapse: collapse; /* Убираем разделяющие линии между ячейками */
-  border-radius: 10px; /* Задаем радиус скругления углов */
+  border-collapse: collapse; /* Убираем разделяющие линии между ячейками */ /* Задаем радиус скругления углов */
   overflow: hidden;
 }
 

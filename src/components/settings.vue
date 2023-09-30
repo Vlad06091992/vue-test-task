@@ -42,8 +42,10 @@ false
 
 
 <template>
-  <div class="root_aside">
-<ButtonClose @close="cancelHandler"/>
+  <div class="root_settings">
+    <div class="button">
+      <ButtonClose @close="cancelHandler"/>
+    </div>
     <div class="element">
       <component :big-size='true' :show-instruments=showIntstruments :is="activeComponent"></component>
     </div>
@@ -78,10 +80,15 @@ false
   background: linear-gradient(90deg, #3C3C3C 0%, #444444 51.04%, #333333 100%)
 }
 
-.root_aside {
+.button{
+  position: absolute;
+  top:6px;
+  left:222px;
+}
+
+.root_settings {
   position: relative;
-  border-bottom-right-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   border: 2px solid #4c4c4c;
   width: 250px;
   height: 501px;
@@ -180,8 +187,8 @@ false
 }
 
 .modal {
-  width: 247.5px;
-  border-bottom-right-radius: 10px;
+  width: 246px;
+  border-top-left-radius: 10px;
 }
 
 
