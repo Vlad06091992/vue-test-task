@@ -1,12 +1,19 @@
 <template>
   <div class="root">
-    <div class="yellow"></div>
-    <div class="yellow_blur"></div>
+    <div class="blue"></div>
+    <div class="blue_blur"></div>
+    <div class="numberOfTools">{{numberOfTools}}</div>
   </div>
 
 </template>
 
 <script setup lang="ts">
+import {useStore} from "../../store/store.ts"
+import {computed} from "vue";
+
+const numberOfTools = computed(()=>{
+  return useStore()['Yellow'].numberOfTools
+})
 
 </script>
 
@@ -22,7 +29,7 @@
   }
 }
 
-.yellow {
+.blue {
   position: relative;
   top: 30px;
   left: 20px;
@@ -32,7 +39,7 @@
   background: #AA9765;
 }
 
-.yellow_blur {
+.blue_blur {
   position: absolute;
   z-index: 2;
   top: 25px;
@@ -42,4 +49,16 @@
   height: 50px;
   background: #D9BB9859;
 }
+
+.numberOfTools{
+  position: absolute;
+  top:77px;
+  left:77px;
+  border-top-left-radius: 6px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #4c4c4c;
+  color:gray;
+}
+
 </style>

@@ -9,19 +9,16 @@ import ModalWindow from "../components/modal-window.vue";
 
 const store = useStore()
 
-const acceptHandler = (arg:any) => {
-  // debugger
+const acceptHandler = (num:number) => {
+  debugger
+store.deleteInstruments(num)
   store.toggleModalVisible(false)
-  store.setActiveElement('')
-  // counterValue++
+  store.setActiveElement(null)
 }
 
 const cancelHandler = () => {
-  // debugger
   store.toggleModalVisible(false)
-  store.setActiveElement('')
-
-  // counterValue--
+  store.setActiveElement(null)
 }
 
 

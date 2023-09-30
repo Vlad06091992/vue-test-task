@@ -7,26 +7,25 @@ import Green from "./drag-and-drop-elements/green.vue";
 import Yellow from "./drag-and-drop-elements/yellow.vue";
 import Blue from "./drag-and-drop-elements/blue.vue";
 import Settings from "./settings.vue";
-import {computed} from "vue";
+import {computed, ref} from "vue";
 
 
 const store = useStore();
+// const draggble = ref(store.activeElement.length)
 
 function onDragStart(name:string) {
   store.setMovableElement(name)
 }
 function onDrop(e:any, value:number) {
+ if(store.activeElement)
+  e.preventDefault()
   store.replaceElement(e, value)
 }
 
 function setCurrentComponent(element:"Blue" | "Green" | "Yellow"){
-  debugger
   store.setActiveElement(element)
 }
 
-const draggble = computed(()=>{
-  return !store.activeElement
-})
 
 </script>
 
@@ -40,13 +39,13 @@ const draggble = computed(()=>{
             @drop="onDrop(store.movableElement,(row - 1) * 5 + column)" class="td" v-for="column in 5"
             :key="(row - 1) * 5 + column"
         >
-          <Blue @dblclick="setCurrentComponent('Blue')" v-if="store['Blue'].currentPosition === (row - 1) * 5 + column" :draggable="draggble"
+          <Blue @dblclick="setCurrentComponent('Blue')" v-if="store['Blue'].currentPosition === (row - 1) * 5 + column" :draggable="!store.activeElement"
                 @drag="onDragStart('Blue')"
           />
-          <Yellow @dblclick="setCurrentComponent('Yellow')" v-if="store['Yellow'].currentPosition === (row - 1) * 5 + column" :draggable="draggble"
+          <Yellow @dblclick="setCurrentComponent('Yellow')" v-if="store['Yellow'].currentPosition === (row - 1) * 5 + column" :draggable="!store.activeElement"
                   @drag="onDragStart('Yellow')"
           />
-          <Green @dblclick="setCurrentComponent('Green')" v-if="store['Green'].currentPosition === (row - 1) * 5 + column" :draggable="draggble"
+          <Green @dblclick="setCurrentComponent('Green')" v-if="store['Green'].currentPosition === (row - 1) * 5 + column" :draggable="!store.activeElement"
                  @drag="onDragStart('Green')"
           />
         </td>
