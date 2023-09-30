@@ -4,14 +4,17 @@ interface State {
     Blue: {
         name: string;
         currentPosition: number;
+        numberOfTools:number;
     };
     Green: {
         name: string;
         currentPosition: number;
+        numberOfTools:number;
     };
     Yellow: {
         name: string;
         currentPosition: number;
+        numberOfTools:number;
     };
     movableElement: string;
     activeElement: string;
@@ -23,15 +26,18 @@ export const useStore = defineStore("movieStore", {
     state: (): State => {
         const blue = {
             name: 'Blue',
-            currentPosition: 1
+            currentPosition: 1,
+            numberOfTools:2
         };
         const green = {
             name: 'Green',
-            currentPosition: 2
+            currentPosition: 2,
+            numberOfTools:4
         };
         const yellow = {
             name: 'Yellow',
-            currentPosition: 3
+            currentPosition: 3,
+            numberOfTools:6
         };
 
         return {
@@ -39,7 +45,7 @@ export const useStore = defineStore("movieStore", {
             Green: green,
             Yellow: yellow,
             movableElement: '',
-            activeElement:'',
+            activeElement:'Green',
             isOpenModal:false,
             elemPositions: [green.currentPosition, blue.currentPosition, yellow.currentPosition],
         };
@@ -58,6 +64,9 @@ export const useStore = defineStore("movieStore", {
         setActiveElement(elem: "Blue" | "Yellow" | "Green") {
             this.activeElement = elem;
             console.log(this.activeElement)
+        },
+        toggleModalVisible(visible:boolean) {
+            this.isOpenModal = visible
         }
     }
 });

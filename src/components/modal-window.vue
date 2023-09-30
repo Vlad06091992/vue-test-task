@@ -1,59 +1,60 @@
+<script setup lang="ts">
+import {ref} from "vue";
 
-
-<script lang="ts" >
-
+const emit = defineEmits(["acceptHandler", "cancelHandler"]);
+let inputValue = ref('')
 </script>
 <template>
-    <div class="root">
-        <input placeholder="Введите количество">
-        <div class="buttons">
-            <button class="btn-cancel">Отмена</button>
-            <button class="btn-accept">Подтвердить</button>
-        </div>
+  <div class="root_modal">
+    <input v-model="inputValue" placeholder="Введите количество">
+    <div class="buttons">
+      <button @click="emit('cancelHandler')" class="btn-cancel">Отмена</button>
+      <button @click="emit('acceptHandler',inputValue)" class="btn-accept">Подтвердить</button>
     </div>
+  </div>
 </template>
 
 
-
 <style scoped lang="scss">
-.root {
-    border: 1.5px solid #4c4c4c;
-    border-radius:4px ;
-    background: #2D2D2D;
-    width: 252px;
-    height: 133px
+.root_modal {
+  border: 1.5px solid #4c4c4c;
+  background: #2D2D2D;
+  height: 133px
 }
 
 
-
 input {
-    position: relative;
-    top: 20px;
-    left: 20px;
-    border-radius: 4px;
-    border: 1.5px solid #4c4c4c;
-    outline: none;
-    background: #2D2D2D;
-    width: 197px;
-    height: 37px;
-    color:gray;
-    padding-left: 10px;
-    font-size: 14px;
+  position: relative;
+  top: 20px;
+  left: 20px;
+  border-radius: 4px;
+  border: 2px solid #4c4c4c;
+  outline: none;
+  background: #2D2D2D;
+  width: 197px;
+  height: 37px;
+  color: gray;
+  padding-left: 10px;
+  font-size: 14px;
 
 }
 
 
 button {
   border: none;
-  border-radius: 8px;
   outline: none;
+  cursor: pointer;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 400;
   color: white;
-  cursor: pointer;
-
+  transition: transform 0.2s;
   &:hover {
     filter: brightness(1.2);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 
   &.btn-accept {
@@ -68,12 +69,12 @@ button {
   &.btn-cancel {
     background: #FFFFFF;
     position: relative;
-    top:40px;
-    left:20px;
+    top: 40px;
+    left: 20px;
     height: 33px;
     color: #2D2D2D;
     padding: 8px 19px;
-}
+  }
 
 }
 </style>

@@ -2,16 +2,11 @@
 
 
 import MainTable from "../src/components/main-table.vue";
-import Settings from "../src/components/settings.vue";
-import ModalWindow from "../src/components/modal-window.vue";
-
 </script>
 
 <template>
   <div style="display: flex">
-        <!-- <MainTable/> -->
-<!--        <Settings/>-->
-    <ModalWindow/>
+         <MainTable/>
   </div>
 
 </template>
