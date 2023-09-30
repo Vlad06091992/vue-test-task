@@ -5,6 +5,7 @@ import Blue from "../components/drag-and-drop-elements/blue.vue";
 import Yellow from "../components/drag-and-drop-elements/yellow.vue";
 import {computed} from "vue";
 import ModalWindow from "../components/modal-window.vue";
+import ButtonClose from "../components/ui/button-close.vue";
 
 
 const store = useStore()
@@ -41,8 +42,8 @@ false
 
 
 <template>
-  <div class="root_settings">
-
+  <div class="root_aside">
+<ButtonClose @close="cancelHandler"/>
     <div class="element">
       <component :big-size='true' :show-instruments=showIntstruments :is="activeComponent"></component>
     </div>
@@ -77,7 +78,7 @@ false
   background: linear-gradient(90deg, #3C3C3C 0%, #444444 51.04%, #333333 100%)
 }
 
-.root_settings {
+.root_aside {
   position: relative;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
