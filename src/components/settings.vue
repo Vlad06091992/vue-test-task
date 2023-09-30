@@ -1,33 +1,32 @@
 <script setup lang="ts">
-import { useStore } from "../store/store.js";
+import {useStore} from "../store/store.js";
 import Green from "../components/drag-and-drop-elements/green.vue";
 import Blue from "../components/drag-and-drop-elements/blue.vue";
 import Yellow from "../components/drag-and-drop-elements/yellow.vue";
-import { computed } from "vue";
+import {computed} from "vue";
 
 const store = useStore()
 
-const cmp = computed(()=>{
-  return store.activeElement
-})
+const activeComponent = computed((): any => {
+  switch (store.activeElement) {
+    case 'Yellow':
+      return Yellow;
+    case 'Green':
+      return Green;
+    case 'Blue':
+      return Blue;
+  }
+});
+
 
 </script>
 
 
 <template>
   <div class="root">
-<!--     <component :is="cmp" class="element"></component>-->
-
-    <div v-if="store.activeElement === 'Green'" class="element">
-      <Green />
+    <div class="element">
+      <component :is="activeComponent"></component>
     </div>
-    <div v-else-if="store.activeElement === 'Yellow'" class="element">
-      <Yellow />
-    </div>
-    <div v-else-if="store.activeElement === 'Blue'" class="element">
-      <Blue />
-    </div>
-
 
     <div class="line"></div>
     <div class="skeleton1"></div>
@@ -55,9 +54,16 @@ const cmp = computed(()=>{
 }
 
 .root {
+  position: relative;
   width: 250px;
   height: 500px;
   background: #26262680;
+}
+
+.element {
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
 .line {

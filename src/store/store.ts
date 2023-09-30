@@ -15,6 +15,7 @@ interface State {
     };
     movableElement: string;
     activeElement: string;
+    isOpenModal:boolean;
     elemPositions: number[];
 }
 
@@ -39,6 +40,7 @@ export const useStore = defineStore("movieStore", {
             Yellow: yellow,
             movableElement: '',
             activeElement:'',
+            isOpenModal:false,
             elemPositions: [green.currentPosition, blue.currentPosition, yellow.currentPosition],
         };
     },
