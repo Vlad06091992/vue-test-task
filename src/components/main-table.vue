@@ -10,7 +10,6 @@ import Settings from "./settings.vue";
 
 
 const store = useStore();
-// const draggble = ref(store.activeElement.length)
 
 function onDragStart(name:string) {
   store.setMovableElement(name)
@@ -54,13 +53,11 @@ function setCurrentComponent(element:"Blue" | "Green" | "Yellow"){
     <div class="settings">
       <Settings v-if="store.activeElement"/>
     </div>
-
   </div>
 </template>
 
 
 <style scoped lang="css">
-
 * {
   box-sizing: border-box
 }
@@ -91,6 +88,4 @@ table {
   top:0;
   left:252px;
 }
-
-
 </style>

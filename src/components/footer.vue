@@ -7,7 +7,6 @@ import ButtonClose from "../components/ui/button-close.vue";
   <div class="root_footer">
     <div class="button">
       <ButtonClose/>
-
     </div>
     <div class="skeleton1"></div>
 

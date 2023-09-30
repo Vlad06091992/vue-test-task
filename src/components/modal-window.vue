@@ -36,7 +36,6 @@ input {
   color: gray;
   padding-left: 10px;
   font-size: 14px;
-
 }
 
 
@@ -75,6 +74,5 @@ button {
     color: #2D2D2D;
     padding: 8px 19px;
   }
-
 }
 </style>

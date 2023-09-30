@@ -32,14 +32,7 @@ const activeComponent = computed((): any => {
       return Blue;
   }
 });
-
-const showIntstruments = computed(() => {
-  return false
-})
-false
-
 </script>
-
 
 <template>
   <div class="root_settings">
@@ -47,7 +40,7 @@ false
       <ButtonClose @close="cancelHandler"/>
     </div>
     <div class="element">
-      <component :big-size='true' :show-instruments=showIntstruments :is="activeComponent"></component>
+      <component :big-size='true' :show-instruments=false :is="activeComponent"></component>
     </div>
     <div class="line"></div>
     <div class="skeleton1"></div>
@@ -64,8 +57,6 @@ false
                      @cancel-handler="cancelHandler"/>
       </transition>
     </div>
-
-
   </div>
 </template>
 
