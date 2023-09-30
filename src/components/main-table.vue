@@ -7,7 +7,6 @@ import Green from "./drag-and-drop-elements/green.vue";
 import Yellow from "./drag-and-drop-elements/yellow.vue";
 import Blue from "./drag-and-drop-elements/blue.vue";
 import Settings from "./settings.vue";
-import {computed, ref} from "vue";
 
 
 const store = useStore();
