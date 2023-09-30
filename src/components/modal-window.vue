@@ -6,7 +6,7 @@ let inputValue = ref('')
 </script>
 <template>
   <div class="root_modal">
-    <input v-model="inputValue" placeholder="Введите количество">
+    <input type="number" v-model="inputValue" placeholder="Введите количество">
     <div class="buttons">
       <button @click="emit('cancelHandler')" class="btn-cancel">Отмена</button>
       <button @click="emit('acceptHandler',inputValue)" class="btn-accept">Подтвердить</button>
@@ -19,7 +19,7 @@ let inputValue = ref('')
 .root_modal {
   border: 1.5px solid #4c4c4c;
   background: #2D2D2D;
-  height: 133px
+  height: 134px
 }
 
 

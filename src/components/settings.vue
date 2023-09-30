@@ -9,9 +9,8 @@ import ModalWindow from "../components/modal-window.vue";
 
 const store = useStore()
 
-const acceptHandler = (num:number) => {
-  debugger
-store.deleteInstruments(num)
+const acceptHandler = (num: number) => {
+  store.deleteInstruments(num)
   store.toggleModalVisible(false)
   store.setActiveElement(null)
 }
@@ -33,6 +32,10 @@ const activeComponent = computed((): any => {
   }
 });
 
+const showIntstruments = computed(() => {
+  return false
+})
+false
 
 </script>
 
@@ -41,7 +44,7 @@ const activeComponent = computed((): any => {
   <div class="root_settings">
 
     <div class="element">
-      <component :is="activeComponent"></component>
+      <component :big-size='true' :show-instruments=showIntstruments :is="activeComponent"></component>
     </div>
     <div class="line"></div>
     <div class="skeleton1"></div>
@@ -53,7 +56,10 @@ const activeComponent = computed((): any => {
     <div class="line2"></div>
     <button @click="store.toggleModalVisible(true)" class="btn">Удалить предмет</button>
     <div class="modalWrapper">
-      <ModalWindow class="modal" v-if="store.isOpenModal" @accept-handler="acceptHandler" @cancel-handler="cancelHandler"/>
+      <transition name="fade">
+        <ModalWindow class="modal" v-if="store.isOpenModal" @accept-handler="acceptHandler"
+                     @cancel-handler="cancelHandler"/>
+      </transition>
     </div>
 
 
@@ -73,32 +79,19 @@ const activeComponent = computed((): any => {
 
 .root_settings {
   position: relative;
-  border-bottom-right-radius:10px;
-  border-top-right-radius:10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
   border: 2px solid #4c4c4c;
-    width: 250px;
+  width: 250px;
   height: 501px;
   background: #2D2D2D;
 }
 
 
-//.root_settings {
-//  backdrop-filter: blur(5px);
-//  position: relative;
-//z-index:20;
-//  border-bottom-right-radius:10px;
-//  border-top-right-radius:10px;
-//  border: 2px solid #4c4c4c;
-//  width: 250px;
-//  height: 501px;
-//}
-
-
-
 .element {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 30px;
+  left: 40px;
 }
 
 .line {
@@ -163,9 +156,11 @@ const activeComponent = computed((): any => {
   background: #FA7272;
   margin: 0 auto;
   transition: transform 0.2s;
+
   &:hover {
     filter: brightness(1.2);
   }
+
   &:active {
     transform: scale(0.95);
   }
@@ -176,16 +171,34 @@ const activeComponent = computed((): any => {
   color: white;
 }
 
-.modalWrapper{
+.modalWrapper {
   position: absolute;
   z-index: 10;
-  top:363px;
-  left:-1px;
+  top: 363px;
+  left: -1px;
 }
 
-.modal{
+.modal {
   width: 247.5px;
-  border-bottom-right-radius:10px;
+  border-bottom-right-radius: 10px;
 }
+
+
+.fade-enter-active {
+  animation: fadeIn 1s;
+}
+
+
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(100px);
+  }
+
+  to {
+    transform: translateY(0px);
+  }
+}
+
 
 </style>

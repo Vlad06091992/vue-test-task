@@ -67,9 +67,12 @@ export const useStore = defineStore("movieStore", {
         },
         deleteInstruments(value:number) {
             if(this.activeElement){
-                // this[this.activeElement].currentPosition = 4;
-                this[this.activeElement].numberOfTools -= +value
+                if(this[this.activeElement].numberOfTools < value) {
+                    this[this.activeElement].numberOfTools = 0
+                } else {
+                    this[this.activeElement].numberOfTools -= +value
 
+                }
             }
         }
     }

@@ -39,13 +39,13 @@ function setCurrentComponent(element:"Blue" | "Green" | "Yellow"){
             @drop="onDrop(store.movableElement,(row - 1) * 5 + column)" class="td" v-for="column in 5"
             :key="(row - 1) * 5 + column"
         >
-          <Blue @dblclick="setCurrentComponent('Blue')" v-if="store['Blue'].currentPosition === (row - 1) * 5 + column" :draggable="!store.activeElement"
+          <Blue :big-size='false' :show-instruments='true' @dblclick="setCurrentComponent('Blue')" v-if="store['Blue'].currentPosition === (row - 1) * 5 + column" :draggable="!store.activeElement"
                 @drag="onDragStart('Blue')"
           />
-          <Yellow @dblclick="setCurrentComponent('Yellow')" v-if="store['Yellow'].currentPosition === (row - 1) * 5 + column" :draggable="!store.activeElement"
+          <Yellow :big-size='false' :show-instruments='true' @dblclick="setCurrentComponent('Yellow')" v-if="store['Yellow'].currentPosition === (row - 1) * 5 + column" :draggable="!store.activeElement"
                   @drag="onDragStart('Yellow')"
           />
-          <Green @dblclick="setCurrentComponent('Green')" v-if="store['Green'].currentPosition === (row - 1) * 5 + column" :draggable="!store.activeElement"
+          <Green :big-size='false' :show-instruments='true' @dblclick="setCurrentComponent('Green')" v-if="store['Green'].currentPosition === (row - 1) * 5 + column" :draggable="!store.activeElement"
                  @drag="onDragStart('Green')"
           />
         </td>
@@ -78,6 +78,7 @@ table {
 }
 
 .td {
+  cursor: pointer;
   background: #2D2D2D;
   width: 100px;
   height: 100px;

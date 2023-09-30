@@ -1,8 +1,12 @@
 <template>
-  <div class="root">
-    <div class="blue"></div>
-    <div class="blue_blur"></div>
-    <div class="numberOfTools">{{numberOfTools}}</div>
+  <div class="root" :class="{ big_root : bigSize}">
+    <div class="yellow" :class="{ bigVariant_quad : bigSize}"></div>
+    <div class="yellow_blur" :class="{ bigVariant_quad_blur : bigSize}"></div>
+    <div v-if="showInstruments" class="numberOfTools" >
+      <div class="number">
+        {{ numberOfTools }}
+      </div>
+    </div>
   </div>
 
 </template>
@@ -10,6 +14,13 @@
 <script setup lang="ts">
 import {useStore} from "../../store/store.ts"
 import {computed} from "vue";
+
+type Props = {
+  showInstruments: boolean,
+  bigSize:boolean
+}
+
+const { showInstruments,bigSize } = defineProps<Props>();
 
 const numberOfTools = computed(()=>{
   return useStore()['Yellow'].numberOfTools
@@ -23,13 +34,9 @@ const numberOfTools = computed(()=>{
   width: 96px;
   height: 96px;
   position: relative;
-  &:hover{
-    border: 1px solid #4c4c4c;;
-    border-radius: 10px;
-  }
 }
 
-.blue {
+.yellow {
   position: relative;
   top: 30px;
   left: 20px;
@@ -39,7 +46,7 @@ const numberOfTools = computed(()=>{
   background: #AA9765;
 }
 
-.blue_blur {
+.yellow_blur {
   position: absolute;
   z-index: 2;
   top: 25px;
@@ -50,7 +57,25 @@ const numberOfTools = computed(()=>{
   background: #D9BB9859;
 }
 
+.big_root{
+  width: 200px;
+  height: 200px;
+}
+
+.bigVariant_quad{
+  width:115px;
+  height:115px;
+}
+.bigVariant_quad_blur{
+  width:115px;
+  height:115px;
+  top: 15px;
+  left: 30px;
+}
+
+
 .numberOfTools{
+  font-size: 12px;
   position: absolute;
   top:77px;
   left:77px;
@@ -59,6 +84,11 @@ const numberOfTools = computed(()=>{
   height: 18px;
   border: 2px solid #4c4c4c;
   color:gray;
+}
+
+.number{
+  margin-top: 3px;
+  margin-left: 5px;
 }
 
 </style>
