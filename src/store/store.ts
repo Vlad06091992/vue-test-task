@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import {defineStore} from "pinia";
 
 type ElementNameType = "Blue" | "Yellow" | "Green" | null;
 type Element = {
@@ -35,6 +35,7 @@ export const useStore = defineStore("movieStore", {
             numberOfTools: 6
         };
 
+
         return {
             Blue: blue,
             Green: green,
@@ -45,6 +46,7 @@ export const useStore = defineStore("movieStore", {
             elemPositions: [green.currentPosition, blue.currentPosition, yellow.currentPosition],
         };
     },
+    persist:true,
     getters: {},
     actions: {
         replaceElement(elem: ElementNameType, pos: number) {
@@ -65,9 +67,9 @@ export const useStore = defineStore("movieStore", {
         toggleModalVisible(visible: boolean) {
             this.isOpenModal = visible;
         },
-        deleteInstruments(value:number) {
-            if(this.activeElement){
-                if(this[this.activeElement].numberOfTools < value) {
+        deleteInstruments(value: number) {
+            if (this.activeElement) {
+                if (this[this.activeElement].numberOfTools < value) {
                     this[this.activeElement].numberOfTools = 0
                 } else {
                     this[this.activeElement].numberOfTools -= +value
@@ -77,4 +79,5 @@ export const useStore = defineStore("movieStore", {
         }
     }
 });
+
 
