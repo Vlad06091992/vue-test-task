@@ -38,7 +38,6 @@ export const useStore = defineStore("store", {
             numberOfTools: 6
         };
 
-
         return {
             Blue: blue,
             Green: green,
