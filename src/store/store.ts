@@ -1,8 +1,11 @@
 import {defineStore} from "pinia";
 
-type ElementNameType = "Blue" | "Yellow" | "Green" | null;
+export type ElementIdentifier = "Blue" | "Yellow" | "Green" | null;
+
+export type ElementName =  Exclude<ElementIdentifier, null>;
+
 type Element = {
-    name: ElementNameType;
+    name: ElementName;
     currentPosition: number;
     numberOfTools: number;
 };
@@ -17,7 +20,7 @@ type State = {
     elemPositions: number[];
 };
 
-export const useStore = defineStore("movieStore", {
+export const useStore = defineStore("store", {
     state: (): State => {
         const blue: Element = {
             name: 'Blue',
@@ -49,7 +52,7 @@ export const useStore = defineStore("movieStore", {
     persist:true,
     getters: {},
     actions: {
-        replaceElement(elem: ElementNameType, pos: number) {
+        replaceElement(elem: ElementName, pos: number) {
             if (pos == this.Green.currentPosition) return;
             if (pos == this.Yellow.currentPosition) return;
             if (pos == this.Blue.currentPosition) return;
@@ -60,9 +63,8 @@ export const useStore = defineStore("movieStore", {
         setMovableElement(element: string) {
             this.movableElement = element;
         },
-        setActiveElement(elem: ElementNameType) {
+        setActiveElement(elem: ElementIdentifier) {
             this.activeElement = elem;
-            console.log(this.activeElement);
         },
         toggleModalVisible(visible: boolean) {
             this.isOpenModal = visible;
@@ -73,11 +75,8 @@ export const useStore = defineStore("movieStore", {
                     this[this.activeElement].numberOfTools = 0
                 } else {
                     this[this.activeElement].numberOfTools -= +value
-
                 }
             }
         }
     }
 });
-
-

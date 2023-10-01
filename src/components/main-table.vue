@@ -1,21 +1,20 @@
 <script setup lang="ts">
 
-import {useStore} from "../store/store.ts";
+import {ElementName, useStore} from "../store/store.ts";
 import Green from "./drag-and-drop-elements/green.vue";
 import Yellow from "./drag-and-drop-elements/yellow.vue";
 import Blue from "./drag-and-drop-elements/blue.vue";
 import Settings from "./settings.vue";
 
 const store = useStore();
-function onDragStart(name:string) {
+
+const onDragStart = (name:string) => {
   store.setMovableElement(name)
 }
-function onDrop(e:any, value:number) {
- if(store.activeElement)
-  e.preventDefault()
-  store.replaceElement(e, value)
+const onDrop = (element:"Blue" | "Green" | "Yellow", value:number) => {
+ if(store.activeElement) return
+  store.replaceElement(element, value)
 }
-
 function setCurrentComponent(element:"Blue" | "Green" | "Yellow"){
   store.setActiveElement(element)
 }
@@ -28,7 +27,7 @@ function setCurrentComponent(element:"Blue" | "Green" | "Yellow"){
       <tr v-for="row in 5" :key="row">
         <td @dragover.prevent
             @dragenter.prevent
-            @drop="onDrop(store.movableElement,(row - 1) * 5 + column)" class="td" v-for="column in 5"
+            @drop="onDrop(store.movableElement as ElementName,(row - 1) * 5 + column)" class="td" v-for="column in 5"
             :key="(row - 1) * 5 + column"
         >
           <Blue :big-size='false' :show-instruments='true' @dblclick="setCurrentComponent('Blue')" v-if="store['Blue'].currentPosition === (row - 1) * 5 + column" :draggable="!store.activeElement"
